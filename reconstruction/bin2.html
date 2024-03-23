@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" name="viewport"/>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+    <title>
+      Document
+    </title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+    <!--Custom style-->
+    <style>
+      #root > * {
+          position: fixed;
+      }
+
+	  .paragraph-container {
+			overflow: hidden;
+		}
+		
+        .paragraph-content {
+            font-size: 1px;  /* Set the initial font size */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </script>
+    <script>
+      $(document).ready(function() {
+            $('.paragraph-container').each(function() {
+                var containerHeight = $(this).height();
+                var contentHeight = $(this).find('.paragraph-content').height();
+                var fontSize = parseInt($(this).find('.paragraph-content').css('font-size'));
+				var $paragraphContent = $(this).find('.paragraph-content');
+                
+				
+				if (contentHeight < containerHeight && $paragraphContent.text().trim() !== '')  {
+					while (contentHeight < containerHeight) {
+                        fontSize += 1;
+                        $(this).find('.paragraph-content').css('font-size', fontSize + 'px');
+                        contentHeight = $(this).find('.paragraph-content').height();
+						console.log('Content Height:', contentHeight);
+						console.log('Container Height:', containerHeight);
+                    }
+					fontSize -= 1;
+                    $(this).find('.paragraph-content').css('font-size', fontSize + 'px');
+					contentHeight = $(this).find('.paragraph-content').height();
+					console.log('Content Height:', contentHeight);
+					console.log('Container Height:', containerHeight);
+					
+					while (contentHeight > 0.9*containerHeight){
+						fontSize -= 1;
+						$(this).find('.paragraph-content').css('font-size', fontSize + 'px');
+						contentHeight = $(this).find('.paragraph-content').height();
+						console.log('Content Height:', contentHeight);
+						console.log('Container Height:', containerHeight);
+					}
+				}
+            });
+        });
+    </script>
+  </head>
+  <body>
+    <div id="root" style="display: flex; position: relative">
+      <!--Elements Goes Here-->
+      <div style="top: 83.61754204816879vh; left: 13.451608924977808vw; height: 15.301610861614245vh; width: 70.0394693014087vw;">
+        <p>
+          Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has twosub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position-wise fully connected feed-forward network. We employ a residual connection [ii] around each ofthe two sub-layers, followed by layer normalization [1]. That is, the output of each sub-layer isLayerNorm(x + Sublayer(x)), where Sublayer(x) is the function implemented by the sub-layeritself. To facilitate these residual connections, all sub-layers in the model, as well as the embeddinglayers, produce outputs of dimension dmode! = 512.
+        </p>
+      </div>
+      <div style="top: 71.41544155760681vh; left: 13.713792582333499vw; height: 7.095732152335454vh; width: 69.5812438307266vw;">
+        <p>
+          connected layers for both the encoder and decoder, shown in the left and right halves of Figure[1respectively.
+        </p>
+      </div>
+      <div style="top: 26.326861857355528vh; left: 33.81787635437071vw; height: 21.97239221787503vh; width: 14.06472679683674vw;">
+        <p>
+        </p>
+        <img src="image/\bin2_3.png" style="width: 100%; height: 100%; object-fit: fill;"/>
+      </div>
+      <div style="top: 60.38439967323514vh; left: 50.47616986639937vw; height: 4.217470983031458vh; width: 9.471580213944652vw;">
+        <p>
+          oupnns(shifted right)
+        </p>
+      </div>
+      <div style="top: 18.474920641338244vh; left: 51.20319362718841vw; height: 2.2416541227109863vh; width: 7.775065901230416vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 36.4758566433204vh; left: 50.98803423994552vw; height: 2.286560317766382vh; width: 8.076272305031829vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 48.8009442695893vh; left: 60.52270603460149vw; height: 4.426522872503652vh; width: 7.376197269450913vw;">
+        <p>
+          PositionalEncoding
+        </p>
+      </div>
+      <div style="top: 26.83858041297605vh; left: 51.18090174690867vw; height: 2.1931603304140133vh; width: 7.803574878718777vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 53.38093945934514vh; left: 51.53909023781832vw; height: 3.5487990976645456vh; width: 7.291555077742407vw;">
+        <p>
+          ouuntEmbedding
+        </p>
+      </div>
+      <div style="top: 22.69835745453075vh; left: 52.60047426886937vw; height: 2.2254872575180795vh; width: 5.0578536763130515vw;">
+        <p>
+          Forward
+        </p>
+      </div>
+      <div style="top: 14.481314883869926vh; left: 53.39244278357616vw; height: 2.0795432574683184vh; width: 3.8566088699804046vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 65.69351228685643vh; left: 31.020789375267814vw; height: 4.0316610478038735vh; width: 34.55927416346565vw;">
+        <p>
+          Figure 1: The Transformer - model architecture.
+        </p>
+      </div>
+      <div style="top: 80.0509701868531vh; left: 14.68073352660535vw; height: 3.96370986970872vh; width: 26.149484483081842vw;">
+        <p>
+          3.1Encoder and Decoder Stacks
+        </p>
+      </div>
+      <div style="top: 21.08708440371633vh; left: 53.53221986716454vw; height: 1.4406370256104055vh; width: 3.3420304943835744vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 48.79267018312102vh; left: 36.91365599749021vw; height: 11.481645912121813vh; width: 10.38317404811459vw;">
+        <p>
+        </p>
+        <img src="image/\bin2_20.png" style="width: 100%; height: 100%; object-fit: fill;"/>
+      </div>
+      <div style="top: 53.35734826997081vh; left: 38.28047884082701vw; height: 3.593966409152738vh; width: 7.351532131871324vw;">
+        <p>
+          Embedding
+        </p>
+      </div>
+      <div style="top: 29.356274128972597vh; left: 51.84772726837965vw; height: 3.2487711329369007vh; width: 6.728399652225148vw;">
+        <p>
+          Attention
+        </p>
+      </div>
+      <div style="top: 38.95866572224158vh; left: 51.89271155347086vw; height: 4.911451076499468vh; width: 6.677198269925322vw;">
+        <p>
+          MaskedAttention
+        </p>
+      </div>
+      <div style="top: 60.39622442484408vh; left: 39.023568417720064vw; height: 2.9293298417595515vh; width: 5.78563066234084vw;">
+        <p>
+          Inputs
+        </p>
+      </div>
+      <div style="top: 4.909922362892491vh; left: 52.61107322401445vw; height: 2.549428352631327vh; width: 5.267232358747553vw;">
+        <p>
+          ouupnt
+        </p>
+      </div>
+      <div style="top: 37.37184884948083vh; left: 30.602913762166377vw; height: 2.7101008907245214vh; width: 2.7708556112649996vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 21.026436386594348vh; left: 53.07999778097453vw; height: 2.368251857231124vh; width: 4.076741934990213vw;">
+        <p>
+        </p>
+      </div>
+      <div style="top: 35.28987941215499vh; left: 49.30673089246908vw; height: 12.873516366233744vh; width: 13.48673402971199vw;">
+        <p>
+        </p>
+        <img src="image/\bin2_30.png" style="width: 100%; height: 100%; object-fit: fill;"/>
+      </div>
+    </div>
+  </body>
+</html>
