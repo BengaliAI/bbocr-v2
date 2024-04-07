@@ -81,7 +81,7 @@ dependencies:
       - essential-generators==1.0
       - executing==2.0.1
       - fastapi==0.110.0
-      - fastdeploy-gpu-python==1.0.7
+      # - fastdeploy-gpu-python==1.0.7
       - fastdeploy-tools==0.0.5
       - fastjsonschema==2.19.1
       - flatbuffers==24.3.7
