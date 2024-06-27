@@ -69,7 +69,8 @@ mkdir -p $CONDA_PREFIX/etc/conda/activate.d
 echo 'export LD_LIBRARY_PATH=$CUDNN_PATH/lib:$CONDA_PREFIX/lib/:$LD_LIBRARY_PATH' >> $CONDA_PREFIX/etc/conda/activate.d/env_vars.sh
 ```
 Above didn't work, this worked for me (Reasat)
-```export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path_to_conda_env>/lib/python3.9/site-packages/torch/lib 
+```shell
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path_to_conda_env>/lib/python3.9/site-packages/torch/lib 
 ```
 
 * LD_LIBRARY_PATH setting in **Windows**:[From ChatGPT- Needs Testing]
