@@ -2,7 +2,7 @@
 
 Paper
 
-bbOCR: An Open-source Multi-domain OCR Pipeline for Bengali Documents
+**bbOCR: An Open-source Multi-domain OCR Pipeline for Bengali Documents**
 
 https://arxiv.org/abs/2308.10647
 
