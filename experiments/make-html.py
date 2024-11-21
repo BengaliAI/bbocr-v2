@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Imports and Models
-
-# In[1]:
-
 
 #--------------------------------
 # imports
@@ -42,18 +38,6 @@ model_dla = YOLO(yolo_model_weight_path)
 # OCR
 model_ocr=ApsisBNOCR()
 
-
-# # HTMLGenerator Object and Related Helpers
-# - This Object takes care of fetching the template HTML file that is in "reconstruction/templates/index.html" file and populating this template using required class type layout and its content
-
-# In[2]:
-
-
-
-# # Inference
-# - It takes care of all the inference, that is, Layout Detection at first (`res = model(image)[0]`), then line segmentation, word segmentation and finally returning all of them with appropriate coordinates
-
-# In[3]:
 
 def run_inference(image_path, file_name, img_src_save_directory):
     """

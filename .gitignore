@@ -161,3 +161,5 @@ cython_debug/
 
 # Weights
 weights/best.pt
+data_ignore/*
+images/*
