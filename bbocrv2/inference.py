@@ -73,7 +73,7 @@ def run_inference(image_path : str,
             
             src = os.path.join(img_src_save_directory,f"{filename}_{i}.{extension}")
             
-            info_dict["img_src"] = src
+            info_dict["img_src"] = f"{filename}_{i}.{extension}"
             
             cv2.imwrite(src,cropped_image_region)
 
