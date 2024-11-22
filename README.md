@@ -39,6 +39,8 @@ pip install onnxruntime
 pip install fastdeploy-python -f https://www.paddlepaddle.org.cn/whl/fastdeploy.html
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 pip install ultralytics
+pip install pycocotools
+pip install scikit-learn
 pip install shapely
 ```
 
@@ -66,6 +68,8 @@ python -m pip install -U fastdeploy-gpu-python -f https://www.paddlepaddle.org.c
 pip install torch==2.0.1 torchvision==0.15.2 --index-url https://download.pytorch.org/whl/cu118
 pip install ultralytics
 pip install shapely
+pip install pycocotools
+pip install scikit-learn
 ```
 
 * export LD_LIBRARY_PATH [**Linux** and **MAC**]
