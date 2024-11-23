@@ -13,8 +13,8 @@ import gdown
 from PIL import Image
 from apsisocr import ApsisBNOCR
 from ultralytics import YOLO
-from bbocrv2.inference import run_inference,clean_region_of_interests
-from bbocrv2.utils import generate_html
+from bbocr.inference import run_inference,clean_region_of_interests
+from bbocr.utils import generate_html
 #-----------------------------
 # models
 #-----------------------------
@@ -28,12 +28,13 @@ if not os.path.isfile(yolo_model_weight_path ):
     download(YOLO_DLA_GID,yolo_model_weight_path )
 
 
-# layout analysis model YOLO
-st.session_state.dla= YOLO(yolo_model_weight_path)
+@st.cache_resource
+def load_models():
+    dla= YOLO(yolo_model_weight_path)
+    ocr=ApsisBNOCR()
+    return dla,ocr
 
-# OCR
-st.session_state.ocr=ApsisBNOCR()
-
+dla,ocr=load_models()
 
 template_dir="templates/"
 #-----------------------------
@@ -82,7 +83,7 @@ template_dir="templates/"
 
 # Main Application Page
 def main():
-    st.title("OCR System")
+    st.title("BBOCR")
     uploaded_file = st.file_uploader("Upload an Image file",  type=["png", "jpeg", "jpg"])
     if uploaded_file is not None:
         st.image(uploaded_file, caption="Uploaded Image", use_column_width=True)
@@ -97,13 +98,20 @@ def main():
                 # ocr content
                 region_of_interests=run_inference("images/data.png",
                                                   "images",
-                                                  st.session_state.dla,
-                                                  st.session_state.ocr)
-                region_of_interests=clean_region_of_interests(region_of_interests)
+                                                  dla,
+                                                  ocr)
+            
+            region_of_interests=clean_region_of_interests(region_of_interests)
 
-                # html 
-                print("Generated HTML")
-                generate_html(region_of_interests,"images/data.html",template_dir)
+            # html 
+            print("Generated HTML")
+            generate_html(region_of_interests,"images/data.html",template_dir)
+            # Read the HTML file
+            with open("images/data.html", "r", encoding="utf-8") as f:
+                html_content = f.read()
+                
+                # Display the HTML content
+            st.components.v1.html(html_content, height=600, scrolling=True)
             
             # if result_text.startswith("Error"):
             #     st.error(result_text)
