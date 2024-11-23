@@ -127,4 +127,10 @@ class HtmlGenerator:
         """
         with open(save_path, "w") as f:
             f.write(str(self.index_template.prettify(formatter=HTMLFormatter(indent=2))))
+    
+    def get_html_data(self):
+        """
+        returns the raw html data
+        """ 
+        return str(self.index_template.prettify(formatter=HTMLFormatter(indent=2)))
 

@@ -97,7 +97,7 @@ def main():
                 image.save("images/data.png")
                 # ocr content
                 region_of_interests=run_inference("images/data.png",
-                                                  "images",
+                                                  os.path.join(os.getcwd(),"images"),
                                                   dla,
                                                   ocr)
             
@@ -105,12 +105,8 @@ def main():
 
             # html 
             print("Generated HTML")
-            generate_html(region_of_interests,"images/data.html",template_dir)
-            # Read the HTML file
-            with open("images/data.html", "r", encoding="utf-8") as f:
-                html_content = f.read()
-                
-                # Display the HTML content
+            html_content=generate_html(region_of_interests,"images/data.html",template_dir)
+            # Display the HTML content
             st.components.v1.html(html_content, height=600, scrolling=True)
             
             # if result_text.startswith("Error"):

@@ -41,6 +41,7 @@ def run_inference(image_path : str,
     filename=os.path.basename(image_path)
     
     extension=filename.split(".")[-1]
+    basename=filename.split(".")[0]
     
     image = cv2.imread(image_path)
     
@@ -71,9 +72,9 @@ def run_inference(image_path : str,
 
             cropped_image_region = image[y_min:y_max, x_min:x_max]
             
-            src = os.path.join(img_src_save_directory,f"{filename}_{i}.{extension}")
+            src = os.path.join(img_src_save_directory,f"{basename}_{i}.{extension}")
             
-            info_dict["img_src"] = f"{filename}_{i}.{extension}"
+            info_dict["img_src"] = src
             
             cv2.imwrite(src,cropped_image_region)
 

@@ -31,6 +31,7 @@ def generate_html(detected_elements_info: List[Dict], save_path: str,template_di
 
     # Create the HTML file in the specified directory.
     gen.create_html_file(save_path)
+    return gen.get_html_data()
 
 
 def get_normalized_coordinates(xyxy_tensor: np.ndarray, height: int, width: int) -> List[float]:

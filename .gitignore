@@ -164,3 +164,4 @@ weights/best.pt
 data_ignore/*
 debug*
 images/*.png
+images/*.html
