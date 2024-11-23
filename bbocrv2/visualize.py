@@ -1,16 +1,15 @@
 import cv2
 import numpy as np
-from typing import List, Dict, Any
+from typing import List, Dict, Any,Tuple
 from pycocotools import mask as cocomask
 
-def draw_word_polys(image: np.ndarray, output: Dict[str, List[Dict[str, Any]]]) -> np.ndarray:
+def draw_word_polys(image: np.ndarray, word_polys: List[List]) -> np.ndarray:
     """
     Draws the word polygons from OCR results on the input image.
     
     Parameters:
         image (np.ndarray): The input image.
-        output (Dict[str, List[Dict[str, Any]]]): A dictionary containing "words" and "segments".
-            - "words" is a list of OCR recognition results with keys ['poly'].
+        words (List[List]): The word polygon list with [x1,y1,x2,y2,x3,y3,x4,y4]
 
     Returns:
         np.ndarray: The image with drawn word polygons.
@@ -19,18 +18,17 @@ def draw_word_polys(image: np.ndarray, output: Dict[str, List[Dict[str, Any]]]) 
     output_image = image.copy()
     
     # Iterate over the words
-    for word in output.get("words", []):
-        poly = np.array(word['poly'], dtype=np.int32)  # Convert polygon to NumPy array
-        
+    for poly in  word_polys:
+        poly = np.array(np.array(poly).reshape(-1,2), dtype=np.int32)  # Convert polygon to NumPy array
         # Draw the polygon
         cv2.polylines(output_image, [poly], isClosed=True, color=(0, 255, 0), thickness=2)
 
     return output_image
 
 
-def draw_masks_with_labels(
+def draw_document_layout(
     image: np.ndarray,
-    output: Dict[str, List[Dict[str, Any]]],
+    segments: List[Dict],
     transparency: float = 0.5
 ) -> np.ndarray:
     """
@@ -39,8 +37,8 @@ def draw_masks_with_labels(
     
     Parameters:
         image (np.ndarray): The input image.
-        output (Dict[str, List[Dict[str, Any]]]): A dictionary containing "segments".
-            - Each segment includes 'size', 'counts', 'label', and 'bbox'.
+        segments (List[Dict]): A list of dictionary containing "segments".
+                             - Each segment includes 'size', 'counts', 'label', and 'bbox'.
         transparency (float): Transparency factor for masks (0: fully transparent, 1: fully opaque).
     
     Returns:
@@ -63,7 +61,7 @@ def draw_masks_with_labels(
     overlay = padded_image.copy()
 
     # Draw masks and bounding boxes
-    for segment in output.get("segments", []):
+    for segment in segments:
         # Decode mask using RLE
         rle = {"size": segment["size"], "counts": segment["counts"]}
         mask = cocomask.decode(rle)  # Decode RLE to binary mask

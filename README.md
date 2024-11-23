@@ -77,6 +77,10 @@ mkdir %CONDA_PREFIX%\etc\conda\activate.d
 echo set "LD_LIBRARY_PATH=%CUDNN_PATH%\lib;%CONDA_PREFIX%\lib;%LD_LIBRARY_PATH%" >> %CONDA_PREFIX%\etc\conda\activate.d\env_vars.bat
 ```
 
+### Linux Easy Setup
+
+```bash install_gpu.sh```
+
 # GPU Testing Note
 
 The first Load run will take more time 
