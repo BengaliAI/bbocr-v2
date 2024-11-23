@@ -136,3 +136,7 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: NVIDIA 65:00.0 NVIDIA Corporatio
 +-----------------------------------------+----------------------+----------------------+
 
 ```
+
+# WebApp
+
+For running streamlit web app run: ```streamlit run bbocrv2.py```
