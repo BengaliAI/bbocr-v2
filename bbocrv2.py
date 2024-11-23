@@ -29,6 +29,18 @@ INFO="""
 | Text Recognition| ApsisNet (bangla)|ApsisOCR |
 | Document Layout Analysis| Yolov8-DLA (DLSprint-BadLad)| BBOCR |
 | Reading Order detection | DBScan | BBOCRv2|
+
+Name: 
+Dept: 
+Batch:
+Roll:
+
+Name: 
+Dept: 
+Batch:
+Roll:
+
+**place logo or other information here**
 """
 
 @st.cache_resource
@@ -68,7 +80,7 @@ def main():
     
     
     if uploaded_file is not None:
-        image = Image.open(uploaded_file)
+        image = Image.open(uploaded_file).convert("RGB")
         arr = np.array(image)
         cols[0].image(arr)
         with st.spinner('Executing OCR'):
