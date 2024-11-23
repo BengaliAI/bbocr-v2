@@ -138,5 +138,5 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: NVIDIA 65:00.0 NVIDIA Corporatio
 ```
 
 # WebApp
-- BBOCRv2: For running streamlit web app run: ```streamlit run bbocr.py```
+- BBOCR: For running streamlit web app run: ```streamlit run bbocr.py```
 - BBOCRv2: For running streamlit web app run: ```streamlit run bbocrv2.py```
