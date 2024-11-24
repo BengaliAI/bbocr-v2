@@ -19,6 +19,7 @@ import cv2
 from bbocrv2.ocr import ImageOCR
 from bbocrv2.visualize import  draw_word_polys,draw_document_layout
 from bbocrv2.postprocessing import process_segments_and_words,construct_text_from_segments
+from bbocrv2.htmlgen import generate_html
 from apsisocr.utils import correctPadding
 #--------------------------------------------------
 # main
@@ -106,7 +107,11 @@ def main():
         segmented_data=process_segments_and_words(segments,words)
         layout_text_data=construct_text_from_segments(segmented_data)
         st.text_area("layout text", value=layout_text_data,height=400)
-
+        # Anabil---> Code frem here
+        st.title("HTML Recontruction")
+        height,width=arr.shape[:2]
+        html_data=generate_html(segmented_data,height,width)
+        st.components.v1.html(html_data, height=600, scrolling=True)
         # Word Analysis
         st.title("Word Analysis")
         crops=ocr.detector.get_crops(output["rotation"]["rotated_image"],[entry["poly"] for entry in output["words"]])
