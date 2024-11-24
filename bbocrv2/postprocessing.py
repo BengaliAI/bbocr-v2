@@ -171,7 +171,7 @@ def construct_text_from_segments(segments_data: List[Dict[str, Any]]) -> str:
 
     for idx, segment in enumerate(sorted_segments, start=1):
         label = segment["label"]
-        segment_header = f"{label}:serial:{idx}"
+        segment_header = f"{label}"
         if segment["data"]:
             # Group and sort words into lines
             sorted_lines = sort_lines_and_words(segment["data"])

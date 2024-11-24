@@ -19,6 +19,7 @@ import cv2
 from bbocrv2.ocr import ImageOCR
 from bbocrv2.visualize import  draw_word_polys,draw_document_layout
 from bbocrv2.postprocessing import process_segments_and_words,construct_text_from_segments
+from apsisocr.utils import correctPadding
 #--------------------------------------------------
 # main
 #--------------------------------------------------
@@ -106,6 +107,39 @@ def main():
         layout_text_data=construct_text_from_segments(segmented_data)
         st.text_area("layout text", value=layout_text_data,height=400)
 
+        # Word Analysis
+        st.title("Word Analysis")
+        crops=ocr.detector.get_crops(output["rotation"]["rotated_image"],[entry["poly"] for entry in output["words"]])
+        crops=[correctPadding(crop,(128,1024)) for crop in crops]
+        crops=[ crop[:,:pad_w] for (crop,pad_w) in crops]
+        data=[{"image": crop,"text":text} for crop,text in zip(crops,[entry["text"] for entry in output["words"]])]
+        
+        # Custom CSS to center the table
+        st.markdown(
+            """
+            <style>
+            .centered-table {
+                display: flex;
+                justify-content: center;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        # Display the table in the center
+        st.markdown('<div class="centered-table">', unsafe_allow_html=True)
+
+        # Iterate over the data in chunks of 5 to create rows
+        for i in range(0, len(data), 10):
+            cols = st.columns(10)  # Create 5 columns for each row
+            
+            for j in range(10):
+                if i + j < len(data):  # Ensure we don't go out of bounds
+                    with cols[j]:  # Access the j-th column in the current row
+                        st.image(data[i + j]["image"], caption=data[i + j]["text"], use_container_width=True)
+
+        st.markdown('</div>', unsafe_allow_html=True)
 
         
                 
