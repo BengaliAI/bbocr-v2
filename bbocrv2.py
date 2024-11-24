@@ -18,6 +18,7 @@ import pandas as pd
 import cv2 
 from bbocrv2.ocr import ImageOCR
 from bbocrv2.visualize import  draw_word_polys,draw_document_layout
+from bbocrv2.postprocessing import process_segments_and_words,construct_text_from_segments
 #--------------------------------------------------
 # main
 #--------------------------------------------------
@@ -97,6 +98,15 @@ def main():
         df=pd.DataFrame(output["words"])
         df=df[['text','line_num','word_num']]
         cols[4].dataframe(df)
+        # text construction
+        st.title("Layout wise text construction")
+        segments=output["segments"]
+        words=output["words"]
+        segmented_data=process_segments_and_words(segments,words)
+        layout_text_data=construct_text_from_segments(segmented_data)
+        st.text_area("layout text", value=layout_text_data,height=400)
+
+
         
                 
 if __name__ == '__main__':  
