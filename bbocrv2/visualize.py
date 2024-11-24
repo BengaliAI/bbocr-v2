@@ -21,7 +21,7 @@ def draw_word_polys(image: np.ndarray, word_polys: List[List]) -> np.ndarray:
     for poly in  word_polys:
         poly = np.array(np.array(poly).reshape(-1,2), dtype=np.int32)  # Convert polygon to NumPy array
         # Draw the polygon
-        cv2.polylines(output_image, [poly], isClosed=True, color=(0, 255, 0), thickness=2)
+        cv2.polylines(output_image, [poly], isClosed=True, color=(0, 255, 0), thickness=1)
 
     return output_image
 

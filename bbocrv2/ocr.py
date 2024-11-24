@@ -22,6 +22,7 @@ from pycocotools import mask as cocomask
 
 from .rotation import auto_correct_image_orientation
 from .serialization import assign_line_word_numbers
+from .merging import merge_segments
 
 class ImageOCR(object):
     def __init__(self, 
@@ -95,7 +96,7 @@ class ImageOCR(object):
         """
         # Perform YOLO object detection
         res = self.dla(image,conf=self.yolo_conf_thresh)[0]
-        
+        img_height,img_width=image.shape[:2]
         segments = []
 
         # Extract masks, labels, and bounding boxes from the results
@@ -115,6 +116,8 @@ class ImageOCR(object):
 
             # Append the segment to the list of segments
             segments.append(segment)
+        # merge segments
+        segments=merge_segments(segments,[img_height,img_width])
         return segments
 
     def __call__(self, image: Union[str, np.ndarray]) -> dict:
