@@ -125,7 +125,7 @@ class HtmlGenerator:
         """
         This function creates the html file
         """
-        with open(save_path, "w") as f:
+        with open(save_path, "w",encoding="utf-8") as f:
             f.write(str(self.index_template.prettify(formatter=HTMLFormatter(indent=2))))
     
     def get_html_data(self):
