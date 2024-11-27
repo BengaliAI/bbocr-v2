@@ -33,15 +33,13 @@ INFO="""
 | Document Layout Analysis| Yolov8-DLA (DLSprint-BadLad)| BBOCR |
 | Reading Order detection | DBScan | BBOCRv2|
 
-Name: 
-Dept: 
-Batch:
-Roll:
+Name: Shattik Bandyopadhyaa
+Dept: Software Engineering
+Reg.: 2019831039
 
-Name: 
-Dept: 
-Batch:
-Roll:
+Name: Anabil Debnath
+Dept: Software Engineering
+Reg.: 2019831071
 
 **place logo or other information here**
 """
