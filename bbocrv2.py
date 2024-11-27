@@ -110,7 +110,7 @@ def main():
         # Anabil---> Code frem here
         st.title("HTML Recontruction")
         height,width=arr.shape[:2]
-        html_data=generate_html(segmented_data,height,width)
+        html_data=generate_html(segmented_data,height,width,image)
         st.components.v1.html(html_data, height=600, scrolling=True)
         # Word Analysis
         st.title("Word Analysis")
