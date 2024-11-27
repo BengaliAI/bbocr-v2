@@ -1,11 +1,4 @@
-# bbocr-v2
-
-Paper
-
-**bbOCR: An Open-source Multi-domain OCR Pipeline for Bengali Documents**
-
-https://arxiv.org/abs/2308.10647
-
+# চিত্রলিপি
 
 
 # CPU Installation 
@@ -136,7 +129,3 @@ ossyNMMMNyMMhsssssssssssssshmmmhssssssso   GPU: NVIDIA 65:00.0 NVIDIA Corporatio
 +-----------------------------------------+----------------------+----------------------+
 
 ```
-
-# WebApp
-- streamlit run app.py --server.port=2088 --server.address=0.0.0.0
-- BBOCRv2: For running streamlit web app run: ```streamlit run bbocrv2.py```
