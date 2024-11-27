@@ -1,14 +1,10 @@
 #-*- coding: utf-8 -*-
-"""
-@author:MD.Nazmuddoha Ansary
-"""
 from __future__ import print_function
 #---------------------------------------------------------------
 # imports
 #---------------------------------------------------------------
 import streamlit as st
-# intro
-st.set_page_config(layout="wide")
+
 
 import base64
 from PIL import Image
@@ -25,24 +21,6 @@ from apsisocr.utils import correctPadding
 # main
 #--------------------------------------------------
 
-INFO="""
-| Task | Model  | Module   |
-|-----------|-----------|-----------|
-| Text Detection | Differential Binarizer (Word)| PaddleOCR |
-| Text Recognition| ApsisNet (bangla)|ApsisOCR |
-| Document Layout Analysis| Yolov8-DLA (DLSprint-BadLad)| BBOCR |
-| Reading Order detection | DBScan | BBOCRv2|
-
-Name: Shattik Bandyopadhyaa
-Dept: Software Engineering
-Reg.: 2019831039
-
-Name: Anabil Debnath
-Dept: Software Engineering
-Reg.: 2019831071
-
-**place logo or other information here**
-"""
 
 @st.cache_resource
 def load_model():
@@ -55,9 +33,6 @@ def main():
     
     st.title("bbocrv2: Improved Bangla text word detection,recognition and layout analysis")
     
-    with st.sidebar:
-        st.markdown("**Module and Model List**")
-        st.markdown(INFO)
     
     # For newline
     st.write("\n")
