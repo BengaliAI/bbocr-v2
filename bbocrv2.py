@@ -4,7 +4,7 @@ from __future__ import print_function
 # imports
 #---------------------------------------------------------------
 import streamlit as st
-
+st.set_page_config(layout="wide")
 
 import base64
 from PIL import Image
@@ -29,11 +29,78 @@ def load_model():
 
 ocr=load_model()
 
+def get_data_url(img_path):
+    file_ = open(img_path, "rb")
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode("utf-8")
+    file_.close()
+    return data_url
+
+
+# Markdown with icons
+flowchart= """
+    ### OCR & Document Layout Analysis System Flow
+
+    The following sequence represents the flow of the OCR and Document Layout Analysis system in a circular process.
+
+    | **Step**             | **Description** |
+    |----------------------|-----------------|
+    | 🧑‍💻 **User**        | Provides the input image (file path or numpy array) |
+    | 💻 **System**        | Reads and converts the image to RGB |
+    | 📝 **PaddleDBNet**   | Detects word regions in the image |
+    | 🔄 **RotationCorrection** | Applies automated rotation correction to the image |
+    | 🔢 **DBScan**        | Applies reading order detection for words and text |
+    | 🧠 **APSISNet**      | Performs text recognition on correctly rotated word boxes |
+    | 📐 **YOLOv8**        | Performs document layout segmentation on the image |
+    | 🔗 **Merging**       | Merges document segments using vectorized IoU calculation |
+    | 🗂️ **LayoutHandling** | Checks intersection of merged segments with detected words |
+    | 📄 **HTMLReconstruction** | Generates the final HTML layout for the image |
+    | 🔄 **System**        | Returns the final output (HTML with words and document layout) to the user |
+
+    """
+
+team="""
+    ---
+    # Team Members
+
+    | Name                     | Department          | Registration Number |
+    |--------------------------|---------------------|---------------------|
+    | **Shattik Bandyopadhyaa** | Software Engineering| 2019831039          |
+    | **Anabil Debnath**        | Software Engineering| 2019831071          |
+
+    ---
+    """
+module="""
+    | Task | Model  | Module   |
+    |-----------|-----------|-----------|
+    | Text Detection | Differential Binarizer (Word)| PaddleOCR |
+    | Text Recognition| ApsisNet (Bangla)|ApsisOCR |
+    | Document Layout Analysis| Yolov8-DLA (DLSprint-BadLad)| BBOCR |
+    | Reading Order detection | DBScan | BBOCRv2|
+    | HTML Reconstruction | Custom | BBOCRv2|
+    """
+
 def main():
     
-    st.title("bbocrv2: Improved Bangla text word detection,recognition and layout analysis")
+    st.title("চিত্রলিপি") 
+    st.markdown(" ### Improved Bangla text word detection,recognition ,layout analysis , reading order and HTML Reconstruction")
     
-    
+    with st.sidebar: 
+        # Display the Mermaid flowchart diagram
+        st.markdown(flowchart, unsafe_allow_html=True)
+        # Intro section
+        st.markdown(team)
+        # Info section with table
+        st.markdown("# **Module and Model List**")
+        st.markdown(module)
+        st.markdown("---")
+        st.markdown("## **Industry Partner**")
+        st.markdown(f'<img src="data:image/gif;base64,{get_data_url("resources/apsis.png")}" alt="apsis">'+'   [apsis solutions limited](https://apsissolutions.com/)',unsafe_allow_html=True)
+        st.markdown("## **Research Collaboration**")
+        st.markdown(f'<img src="data:image/gif;base64,{get_data_url("resources/bengaliai.png")}" alt="apsis">'+'   [bengali.ai](https://bengali.ai/)',unsafe_allow_html=True)
+        st.markdown("---")
+
+
     # For newline
     st.write("\n")
     
